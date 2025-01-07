@@ -1,5 +1,5 @@
 <?php
-include 'db_connection.php'; // Include the database connection file
+include 'db_connection.php'; 
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +10,7 @@ include 'db_connection.php'; // Include the database connection file
     <title>View Reports - Authority Dashboard</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        /* General Reset */
+     
         * {
             margin: 0;
             padding: 0;
@@ -26,7 +26,7 @@ include 'db_connection.php'; // Include the database connection file
             color: #333;
         }
 
-        /* Sidebar Styling */
+        
         .sidebar {
             width: 250px;
             background: linear-gradient(to bottom, #003366, #1d4f91);
@@ -63,14 +63,14 @@ include 'db_connection.php'; // Include the database connection file
             background: #1d6fc1;
         }
 
-        /* Main Content Styling */
+        
         .main-content {
             margin-left: 250px;
             padding: 30px;
             flex: 1;
         }
 
-        /* Events Table */
+        
         table {
             width: 100%;
             border-collapse: collapse;
@@ -100,7 +100,7 @@ include 'db_connection.php'; // Include the database connection file
     </style>
 </head>
 <body>
-    <!-- Sidebar -->
+    
     <div class="sidebar">
         <h2>Authority Panel</h2>
         <a href="authority_dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
@@ -110,11 +110,11 @@ include 'db_connection.php'; // Include the database connection file
         <a href="authority_login/authority_login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
 
-    <!-- Main Content -->
+    
     <div class="main-content">
         <h1>View All Events</h1>
         <?php
-        // Fetch all events from the database
+        
         $sql = "SELECT * FROM event_requests";
         $result = $conn->query($sql);
 
