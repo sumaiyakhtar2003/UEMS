@@ -6,7 +6,6 @@
     <title>Authority Dashboard</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        /* General Reset */
         * {
             margin: 0;
             padding: 0;
@@ -22,7 +21,6 @@
             flex-direction: column;
         }
 
-        /* Sidebar Styling */
         .sidebar {
             width: 250px;
             background: linear-gradient(to bottom, #4B79A1, #283E51);
@@ -57,7 +55,6 @@
             color: #FFD700;
         }
 
-        /* Main Content Styling */
         .main-content {
             margin-left: 250px;
             padding: 30px;
@@ -93,7 +90,6 @@
             background: #ff6f91;
         }
 
-        /* Calendar Styling */
         .calendar-container {
             background: #1c1f2a;
             padding: 20px;
@@ -179,7 +175,7 @@
     </style>
 </head>
 <body>
-    <!-- Sidebar -->
+
     <div class="sidebar">
         <h2>Authority Panel</h2>
         <a href="authority_dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
@@ -188,15 +184,12 @@
         <a href="authority_login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
-        <!-- Navbar -->
         <div class="navbar">
             <h1>Welcome, Authority!</h1>
             <a href="authority_login/authority_login.html">Logout</a>
         </div>
 
-        <!-- Calendar Section -->
         <div class="calendar-container">
             <div class="calendar-header">
                 <h2 id="month-year">December 2024</h2>
@@ -205,7 +198,6 @@
                     <button onclick="changeMonth(1)">Next</button>
                 </div>
             </div>
-            <!-- Days of the Week -->
             <div class="calendar-days-of-week">
                 <div class="calendar-day-of-week">Sun</div>
                 <div class="calendar-day-of-week">Mon</div>
@@ -216,12 +208,9 @@
                 <div class="calendar-day-of-week">Sat</div>
             </div>
             <div class="calendar" id="calendar-days">
-                <!-- Days will be dynamically generated here -->
             </div>
         </div>
         
-
-        <!-- Cards Section -->
         <div class="cards-container">
             <div class="card">
                 <a href="authority_approve_events.html" style="text-decoration: none; color: inherit;">
@@ -243,11 +232,10 @@
     </div>
 
     <script>
-         let currentMonth = new Date(); // Start with the current month
+         let currentMonth = new Date(); 
          const calendarDaysContainer = document.getElementById("calendar-days");
          const monthYearDisplay = document.getElementById("month-year");
          
-         // Fetch events from the database
          async function fetchEvents(month, year) {
              try {
                  const response = await fetch(`get_events.php?month=${month + 1}&year=${year}`);
@@ -259,45 +247,29 @@
              }
          }
          
-         // Generate the calendar for the current month 
          async function generateCalendar(month, year) {
-             // Clear previous calendar
              calendarDaysContainer.innerHTML = '';
-         
-             // Get the first and last days of the month
              const firstDay = new Date(year, month, 1);
-             const lastDay = new Date(year, month + 1, 0); // Last day of the month
+             const lastDay = new Date(year, month + 1, 0); 
              const daysInMonth = lastDay.getDate();
-         
-             // Update month-year display
              monthYearDisplay.innerHTML = `${firstDay.toLocaleString('default', { month: 'long' })} ${year}`;
          
-             // Fetch events for this month
              const events = await fetchEvents(month, year);
-         
-             // Fill the calendar grid with empty days for the start of the month
-             const dayOfWeek = firstDay.getDay(); // Sunday = 0, Monday = 1, etc.
+             const dayOfWeek = firstDay.getDay(); 
              for (let i = 0; i < dayOfWeek; i++) {
                  const emptyCell = document.createElement("div");
                  emptyCell.classList.add("calendar-day");
                  calendarDaysContainer.appendChild(emptyCell);
              }
          
-             // Add actual days of the month
              for (let day = 1; day <= daysInMonth; day++) {
                  const dayCell = document.createElement("div");
                  dayCell.classList.add("calendar-day");
                  dayCell.textContent = day;
-         
-                 // Format date for comparison
                  const formattedDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-         
-                 // Filter events for the specific day
                  const dayEvents = events.filter(e => e.date === formattedDate);
                  if (dayEvents.length > 0) {
                      dayCell.classList.add("event-day");
-         
-                     // Add all events for this day
                      dayEvents.forEach(event => {
                          dayCell.innerHTML += `<span class="event-title">${event.title} <br> ${event.time} </span>`;
                      });
@@ -309,14 +281,10 @@
              }
          }
          
-         
-         // Handle changing the month
          function changeMonth(direction) {
              currentMonth.setMonth(currentMonth.getMonth() + direction);
              generateCalendar(currentMonth.getMonth(), currentMonth.getFullYear());
          }
-         
-         // Initialize the calendar for the current month
          generateCalendar(currentMonth.getMonth(), currentMonth.getFullYear());
 
     </script>
