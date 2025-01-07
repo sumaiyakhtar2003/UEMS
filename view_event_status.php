@@ -1,5 +1,4 @@
 <?php
-
 include 'db_connection.php';
 
 $sql = "SELECT * FROM event_requests"; 
@@ -64,10 +63,33 @@ $result = $conn->query($sql);
             font-size: 30px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
         }
+
+        .back-button {
+            display: block;
+            width: 120px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background-color:rgb(116, 167, 233);
+            color: white;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .back-button:hover {
+            background-color:rgb(116, 195, 249);
+        }
+
     </style>
 </head>
 <body>
     <h2>All Event Status</h2>
+
+    <!-- Back Button (Redirects to organizer_dashboard.html) -->
+    <a href="organizer_dashboard.html" class="back-button">Back</a>
+
     <table>
         <tr>
             <th>ID</th>
