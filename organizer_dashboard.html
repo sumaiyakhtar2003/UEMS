@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizer Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #87CEEB, #E0F7FA);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(to bottom, #4B79A1, #283E51);
+            color: white;
+            height: 100vh;
+            padding: 20px;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 1px solid white;
+            padding-bottom: 10px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            color: #FFD700;
+        }
+
+        /* Main Content Styling */
+        .main-content {
+            margin-left: 250px;
+            padding: 30px;
+            flex: 1;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, #3a6386, #31949a);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .navbar h1 {
+            font-size: 2em;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            background: #146fba;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background: #104E8B;
+        }
+
+        /* Cards Section */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card h3 {
+            color: #1d6fc1;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 1.2em;
+        }
+
+        .card i {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #87CEEB;
+        }
+
+        /* Action Buttons Section */
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .action-buttons a {
+            text-decoration: none;
+            background: linear-gradient(to right, #336699, #003366); /* Darker blue gradient */
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .action-buttons a:hover {
+            background: linear-gradient(to right, #003366, #001a33); /* Even darker on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Organizer Panel</h2>
+        <a href="organizer_dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="event_submission_form.html"><i class="fas fa-calendar-plus"></i> Submit Event</a>
+        <a href="view_event_status.php"><i class="fas fa-tasks"></i> View Event Status</a>
+        <a href="view_approved_events.php"><i class="fas fa-folder-open"></i> Approved Events</a>
+        <a href="organizer_login/organizer_login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Navbar -->
+        <div class="navbar">
+            <h1>Welcome, Organizer!</h1>
+            <a href="organizer_login/organizer_login.html">Logout</a>
+        </div>
+
+       <!-- Cards Section -->
+       <div class="cards-container">
+           <a href="event_submission_form.html" class="card">
+               <i class="fas fa-calendar-plus"></i>
+               <h3>Submit Event</h3>
+               <p>Submit new event details for approval</p>
+           </a>
+           <a href="view_event_status.php" class="card">
+               <i class="fas fa-tasks"></i>
+               <h3>View Event Status</h3>
+               <p>Track approval status for your events</p>
+           </a>
+           <a href="view_approved_events.php" class="card">
+               <i class="fas fa-folder-open"></i>
+               <h3>Approved Events</h3>
+               <p>View event details</p> 
+           </a>
+       </div>
+       
+
+    
+</body>
+</html>
