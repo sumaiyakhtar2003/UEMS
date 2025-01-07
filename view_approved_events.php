@@ -1,5 +1,4 @@
 <?php
-
 include 'db_connection.php';
 
 $sql = "SELECT * FROM event_requests WHERE status = 'Approved'";
@@ -13,7 +12,6 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Approved Events</title>
     <style>
-        /* General Styling */
         body {
             font-family: 'Arial', sans-serif;
             background: #f8f9fa;
@@ -32,7 +30,6 @@ $result = $conn->query($sql);
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
         }
 
-        /* Table Styling */
         table {
             width: 85%;
             margin: 20px auto;
@@ -70,13 +67,11 @@ $result = $conn->query($sql);
             transition: 0.3s;
         }
 
-        /* Status Styling */
         td.status {
             font-weight: bold;
             color: rgb(10, 138, 112);
         }
 
-        /* Empty State Styling */
         .no-records {
             text-align: center;
             font-size: 20px;
@@ -84,7 +79,24 @@ $result = $conn->query($sql);
             color:rgb(169, 183, 188);
         }
 
-        /* Responsive Design */
+        .back-button {
+            display: block;
+            width: 120px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background-color:rgb(123, 189, 255);
+            color: white;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .back-button:hover {
+            background-color:rgb(104, 180, 235);
+        }
+
         @media (max-width: 768px) {
             table {
                 width: 95%;
@@ -98,6 +110,10 @@ $result = $conn->query($sql);
 </head>
 <body>
     <h2>🎉 Approved Events</h2>
+    
+    
+    <a href="organizer_dashboard.html" class="back-button">Back</a>
+
     <table>
         <tr>
             <th>ID</th>
