@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $email = $conn->real_escape_string($email);
 
-    // Query to check if the email exists
+    
     $sql = "SELECT password FROM Basic_user WHERE u_mail = '$email'";
     $result = $conn->query($sql);
 
@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         $hashed_password = $row['password'];
 
-        // Verify password
+       
         if (password_verify($password, $hashed_password)) {
             
             echo "Login successful!";
