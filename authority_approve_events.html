@@ -6,7 +6,7 @@
     <title>Approve Events - Authority Dashboard</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        /* General Reset */
+        
         * {
             margin: 0;
             padding: 0;
@@ -22,7 +22,6 @@
             color: #333;
         }
 
-        /* Sidebar Styling */
         .sidebar {
             width: 250px;
             background: linear-gradient(to bottom, #003366, #1d4f91);
@@ -59,7 +58,6 @@
             background: #1d6fc1;
         }
 
-        /* Main Content Styling */
         .main-content {
             margin-left: 250px;
             padding: 30px;
@@ -95,7 +93,6 @@
             background: #1d6fc1;
         }
 
-        /* Events Table */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -154,7 +151,6 @@
             gap: 10px;
         }
 
-        /* Action Buttons Section */
         .action-buttons {
             display: flex;
             flex-wrap: wrap;
@@ -182,7 +178,6 @@
     </style>
 </head>
 <body>
-    <!-- Sidebar -->
     <div class="sidebar">
         <h2>Authority Panel</h2>
         <a href="authority_dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
@@ -191,15 +186,12 @@
         <a href="authority_login/authority_login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
-        <!-- Navbar -->
         <div class="navbar">
             <h1>Approve Event Requests</h1>
             <a href="authority_login/authority_login.html">Logout</a>
         </div>
 
-        <!-- Events Table -->
         <h2>Upcoming Event Requests</h2>
         <table>
             <thead>
@@ -220,7 +212,6 @@
         
 
     <script>
-        // Fetch Event Requests
         function fetchEvents() {
             fetch('authority_approve_events.php?fetch=all')
                 .then(response => response.json())
@@ -246,7 +237,6 @@
                 });
         }
     
-        // Approve Event
         function approveEvent(eventId) {
             fetch('authority_approve_events.php', {
                 method: 'POST',
@@ -256,14 +246,11 @@
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'warning') {
-                    // Show warning popup
-                    alert("This date already has two approved events. Please choose a different date."); // Replace with a modal if you prefer
+                    alert("This date already has two approved events. Please choose a different date."); 
                 } else if (data.status === 'success') {
-                    // Show success popup and refresh the events list
-                    alert(data.message); // Replace with a modal if you prefer
+                    alert(data.message); 
                     fetchEvents();
                 } else if (data.status === 'error') {
-                    // Show error message
                     alert("This date already has two approved events. Please choose a different date."); 
                 }
             })
@@ -272,8 +259,6 @@
             });
         }
         
-    
-        // Reject Event
         function rejectEvent(eventId) {
             fetch('authority_approve_events.php', {
                 method: 'POST',
@@ -282,7 +267,6 @@
             }).then(() => fetchEvents());
         }
     
-        // Attach Event Listeners
         function attachActionListeners() {
             document.querySelectorAll('.approve-btn').forEach(button => {
                 button.addEventListener('click', () => {
@@ -298,8 +282,7 @@
                 });
             });
         }
-    
-        // Initialize
+        
         fetchEvents();
     </script>
     
