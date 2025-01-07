@@ -2,7 +2,6 @@
 
 include 'db_connection.php';
 
-
 $sql = "SELECT * FROM event_requests"; 
 $result = $conn->query($sql);
 ?>
@@ -14,29 +13,56 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Event Status</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg,rgb(48, 113, 167),rgb(146, 186, 255));
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
         table {
-            width: 80%;
-            margin: 20px auto;
+            width: 90%;
+            margin: 40px auto;
             border-collapse: collapse;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            overflow: hidden;
         }
 
         table, th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
+            border: none;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
         }
 
         th {
-            background: #1d6fc1;
-            color: white;
+            background-color:rgb(60, 81, 150);
+            color: #fff;
+            font-size: 18px;
         }
 
         td {
-            text-align: center;
+            font-size: 16px;
+            color: #333;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
         }
 
         h2 {
             text-align: center;
             margin-top: 20px;
+            font-size: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
         }
     </style>
 </head>
