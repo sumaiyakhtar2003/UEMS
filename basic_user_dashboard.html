@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRACU Events</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM28KnvbFMDl6No27bqDseEqg2CZkH9dtzJH30" crossorigin="anonymous">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            background: linear-gradient(to right, #00d2ff, #3a7bd5);
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 2.5em;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .content {
+            margin: 20px auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 1200px;
+            background: #1c1f2a;
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        .content h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #00ffff;
+        }
+
+        .event-section {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .event-card {
+            background: linear-gradient(to bottom right, #232526, #414345);
+            border: none;
+            border-radius: 12px;
+            padding: 25px;
+            width: 280px;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+        }
+
+        .event-card:hover {
+            background: linear-gradient(to bottom right, #00c6ff, #0072ff);
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .event-card h3 {
+            font-size: 1.8em;
+            margin: 15px 0;
+            color: #00e6e6;
+        }
+
+        .event-card p {
+            font-size: 1em;
+            color: #cce7ff;
+        }
+
+        .no-events {
+            font-size: 1.5em;
+            color: #ff4e50;
+            margin-top: 30px;
+        }
+
+        .logout-button {
+            margin-top: 30px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(255, 0, 0, 0.3);
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .logout-button:hover {
+            background: linear-gradient(to right, #ff6f91, #ff4e50);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        BRACU Events
+    </div>
+    <div class="content">
+        <h2>Discover Events!</h2> 
+        <div id="event-section" class="event-section">
+        </div>
+        <div id="no-events-message" class="no-events" style="display: none;">
+            No approved events available at the moment.
+        </div>
+        <button class="logout-button" onclick="window.location.href='Basic_user/basic_user_login.html'">Logout</button>
+    </div>
+
+    <script>
+        async function fetchApprovedEvents() {
+            try {
+                const response = await fetch('get_approved_events.php');
+                const events = await response.json();
+                const eventSection = document.getElementById('event-section');
+                const noEventsMessage = document.getElementById('no-events-message');
+
+                if (events.length === 0) {
+                    noEventsMessage.style.display = 'block';
+                } else {
+                    noEventsMessage.style.display = 'none';
+                    events.forEach(event => {
+                        const eventCard = document.createElement('div');
+                        eventCard.classList.add('event-card');
+                        eventCard.innerHTML = `
+                            <h3>${event.title}</h3>
+                            <p>Date: ${event.date}</p>
+                            <p>Time: ${event.time}</p>
+                        `;
+                        eventSection.appendChild(eventCard);
+                    });
+                }
+            } catch (error) {
+                console.error('Error fetching events:', error);
+            }
+        }
+
+        fetchApprovedEvents();
+    </script>
+</body>
+</html>
+
+
+
+
